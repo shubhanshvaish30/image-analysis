@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [typewriterText, setTypewriterText] = useState("");
-  const fullText = "Welcome to AI Imaging Hub";
+  const fullText = "Welcome to AI Powered Diagnostic Imaging Analysis";
 
   useEffect(() => {
     let i = 0; // Start at the first character
@@ -130,24 +130,6 @@ const HomePage = () => {
               />
             </div>
           </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center animate-fade-in-up">
-                <div className="flex justify-center transform hover:scale-105 transition-all duration-300">
-                    <img
-                    src="https://cdni.iconscout.com/illustration/premium/thumb/doctor-prescription-illustration-download-in-svg-png-gif-file-formats--list-medicine-advice-healthcare-medical-pack-illustrations-3826805.png?f=webp"
-                    alt="Prescription"
-                    className="w-full max-w-sm rounded-lg hover:rotate-2"
-                    />
-                </div>
-                <div className="text-left">
-                    <h3 className="text-2xl font-semibold mb-4 hover:text-indigo-400 transition-all duration-300">
-                    4. Receive Your Prescription
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed">
-                    Based on the results of your AI-powered analysis, our system generates a prescription or recommendation, which can be reviewed by your doctor for further treatment.
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -6,12 +6,10 @@ import { v4 } from "uuid";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 
-
 const ImageAnalysis = () => {
   const [results, setResults] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
 
   const handleUpload = async (event) => {
     const file = event.target.files[0];
@@ -35,7 +33,6 @@ const ImageAnalysis = () => {
         
         setResults(response.data); // Set the analysis results
         setIsUploading(false);
-        console.log(image)
       } catch (error) {
         console.error("Error analyzing image:", error);
         setIsUploading(false);
@@ -52,7 +49,6 @@ const ImageAnalysis = () => {
       // Get the download URL after uploading
       getDownloadURL(snapshot.ref).then((url) => {
         setImage(url); // Update the state with the image URL
-        setImageURL(url);
         console.log("Image URL after upload:", url); // Log the URL for debugging
       });
     });
@@ -224,7 +220,7 @@ const ImageAnalysis = () => {
           )}
 
           {/* Image preview after uploading */}
-          {image  && (
+          {image && !results && (
             <div className="mt-8 w-full max-w-3xl bg-gray-800 p-6 rounded-lg shadow-lg text-center">
               <h2 className="text-2xl font-bold mb-4 text-indigo-400">Uploaded Image Preview</h2>
               <img
@@ -249,12 +245,7 @@ const ImageAnalysis = () => {
               <h2 className="text-2xl font-bold mb-4 text-indigo-400">Analysis Results</h2>
               <div
                 className="text-gray-300 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: formatReport(results.text)}}
-              ></div>
-              <h2 className="text-2xl font-bold mb-4 text-indigo-400">Formal Report</h2>
-              <div
-                className="text-gray-300 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: formatReport(results.report)}}
+                dangerouslySetInnerHTML={{ __html: formatReport(results.report) }}
               ></div>
               <div className="mt-6 flex gap-4">
                 <button

@@ -8,7 +8,7 @@ const AllReports = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/reports");
+        const response = await axios.get("https://digital-radiologist.onrender.com/reports");
         const data = await response.data;
         console.log(data);
         
